@@ -2,7 +2,7 @@ import { MSG } from "../../../../../settings.js";
 import {
   isValidEmail,
   isValidPassword,
-  isValidVietnamesePhoneNumber,
+  isValidIndianPhoneNumber,
   showElements,
   hideElements,
 } from "../../../../../controllers/utils.js";
@@ -128,7 +128,7 @@ function validateRegisterForm({ email, phone, password }) {
     hideElements(invalidEmailPopup);
   }
 
-  if (!isValidVietnamesePhoneNumber(phone)) {
+  if (!isValidIndianPhoneNumber(phone)) {
     showElements(invalidPhonePopup);
     invalidPhoneMsg.innerHTML = MSG.phoneInvalid;
     result = false;

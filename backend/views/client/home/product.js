@@ -4,7 +4,7 @@ import {
   calculatePages, 
   getFromStorage, 
   saveToStorage,
-  centsToDollars,
+  formatPriceINR,
   addClassName,
   removeClassName
 } from "../../../controllers/utils.js";
@@ -66,7 +66,7 @@ function renderProducts() {
             <p class="content__products__card__info-box__title text--cap--g">
               ${product.name} - ${product.ram}GB ${product.rom}GB
             </p>
-            <p class="text--blue--bold--g">&dollar;${centsToDollars(product.price)}</p>
+            <p class="text--blue--bold--g">${formatPriceINR(product.price)}</p>
         </div>
         </div>
       `;
@@ -168,7 +168,7 @@ function renderProductDetailPopUp(product) {
           <h2 class="text--cap--g b">${product.name} - ${product.ram}GB ${product.rom}GB</h2>
 
           <div class="product-detail-box__info-box__text-box b">
-            <p class="text--blue--bold--g text--big--g">&dollar;${centsToDollars(product.price)}</p>
+            <p class="text--blue--bold--g text--big--g">${formatPriceINR(product.price)}</p>
             <p>${product.description}</p>
             <details>
               <summary>Show phone inspect</summary>

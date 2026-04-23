@@ -6,7 +6,7 @@ import {
   fullDateFormatted, 
   saveToStorage,
   getFromStorage,
-  centsToDollars,
+  formatPriceINR,
   hideElements,
   showElements,
 } from "../../../controllers/utils.js";
@@ -166,7 +166,7 @@ function renderUserBills(userId) {
       `;
     });
 
-    const total = centsToDollars(order.total);
+    const total = formatPriceINR(order.total);
     const delAddr = getDeliveryAddress(order.deliveryAddressId).address;
     const placed = fullDateFormatted(order.placed);
     const received = fullDateFormatted(order.receivedDate);

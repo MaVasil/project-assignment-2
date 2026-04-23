@@ -7,6 +7,7 @@ import {
   getFromStorage,
   hashPassword,
   saveToStorage,
+  isValidIndianPhoneNumber,
 } from "../utils.js";
 import { filterOrdersList, getEarliestOrderReceivedDate } from "../orders.js";
 
@@ -28,6 +29,11 @@ export function addUser(
     stateId=getDefaultStateId() 
   }
 ) {
+  if (!isValidIndianPhoneNumber(phone)) {
+    console.error("Invalid Indian phone number format!");
+    return false;
+  }
+
   const existingUser = getUsersList().find(
     (user) => user.email === email || user.phone === phone
   );
@@ -80,7 +86,13 @@ export function updateUser(
 
   if(findIndex !== -1) {
     if(email) usersList[findIndex].email = email;
-    if(phone) usersList[findIndex].phone = phone;
+    if(phone) {
+      if (!isValidIndianPhoneNumber(phone)) {
+        console.error("Invalid Indian phone number format!");
+        return false;
+      }
+      usersList[findIndex].phone = phone;
+    }
     if(password && password !== usersList[findIndex].password) usersList[findIndex].password = hashPassword(password);
     if(deliveryAddressId) usersList[findIndex].deliveryAddressId = deliveryAddressId;
     if(stateId) usersList[findIndex].stateId = stateId;

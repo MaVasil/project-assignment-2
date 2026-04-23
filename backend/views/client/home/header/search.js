@@ -8,7 +8,7 @@ import {
   hideElements,
   saveToStorage,
   getFromStorage,
-  centsToDollars,
+  formatPriceINR,
   calculatePercentage as calcPercentage,
 } from "../../../../controllers/utils.js";
 import {
@@ -206,8 +206,8 @@ function validateRange() {
   rangeFill.style.left = `${minPercentage}%`;
   rangeFill.style.width = `${maxPercentage - minPercentage}%`;
 
-  minVal.innerHTML = centsToDollars(min);
-  maxVal.innerHTML = centsToDollars(max);
+  minVal.innerHTML = formatPriceINR(min);
+  maxVal.innerHTML = formatPriceINR(max);
 
   // console.log("price range");
   const productsListFiltered = filterProducts(

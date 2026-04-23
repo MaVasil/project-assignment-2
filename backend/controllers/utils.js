@@ -56,13 +56,12 @@ export function isValidPassword(password) { //AI generate
   return passwordRegex.test(password);
 }
 
-export function isValidVietnamesePhoneNumber(phoneNumber) { //AI generate
+export function isValidIndianPhoneNumber(phoneNumber) {
   /**
-    * Country code + phone number provider: 03,05,07,08,09.
-    * Lenght of VN phone number: 10 digits.
+    * Indian mobile numbers: Start with 6,7,8,9 and exactly 10 digits.
     */
-  const vietnamPhoneNumberRegex = /^(03|05|07|08|09)\d{8}$/;
-  return vietnamPhoneNumberRegex.test(phoneNumber);
+  const indianPhoneNumberRegex = /^[6-9]\d{9}$/;
+  return indianPhoneNumberRegex.test(phoneNumber);
 }
 
 export function isValidDeliveryAddress(delAddr) {
@@ -192,8 +191,11 @@ export function fullDateFormatted(time) {
   return `${dateFormatted(time)} ${time.getFullYear()}`;
 }
 
-export function centsToDollars(cents, decimalPlaces = 2) {
-  return (cents / 100).toLocaleString('en-US', {
+export function formatPriceINR(cents, decimalPlaces = 2) {
+  const rupees = cents / 100;
+  return rupees.toLocaleString('en-IN', {
+    style: 'currency',
+    currency: 'INR',
     minimumFractionDigits: decimalPlaces,
     maximumFractionDigits: decimalPlaces
   });

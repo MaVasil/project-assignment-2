@@ -14,7 +14,7 @@ import {
   isValidDeliveryAddress, 
   saveToStorage, 
   showElements,
-  centsToDollars,
+  formatPriceINR,
   validateCreditCardNumber,
 } from "../../../controllers/utils.js";
 import { 
@@ -95,7 +95,7 @@ function handleCheckout() {
 
 function updateCheckoutForm() {
   const itemsSelected = getItemsSelected().length;
-  const total = centsToDollars(getTotalItemsSelected());
+  const total = formatPriceINR(getTotalItemsSelected());
   const delAddr = getDeliveryAddress(getUser(user.id).deliveryAddressId).address;
 
   checkoutForm.querySelector(".items-js").innerHTML = itemsSelected;

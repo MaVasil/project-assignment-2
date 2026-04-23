@@ -2,7 +2,7 @@ import { MSG } from "../../../settings.js";
 import { getOrderDetail, getPackage, getUserOrders } from "../../../controllers/orders.js";
 import { getProductDetail } from "../../../controllers/products/products.js";
 import { userAuthenticated } from "../../../controllers/users/users.js";
-import { centsToDollars, dateFormatted, hideElements, showElements } from "../../../controllers/utils.js";
+import { formatPriceINR, dateFormatted, hideElements, showElements } from "../../../controllers/utils.js";
 import { getDeliveryState } from "../../../controllers/delivery/states.js";
 import { getDeliveryAddress } from "../../../controllers/delivery/addresses.js";
 
@@ -36,7 +36,7 @@ function renderOrders() {
             <p class="text--cap--g">${product.name} - ${product.ram}GB ${product.rom}GB</p>
             <p>Product id: ${product.id}</p>
             <p>Quantity: ${pack.quantity}</p>
-            <p>Total: &#36;${centsToDollars(product.price * pack.quantity)}</p>
+            <p>Total: ${formatPriceINR(product.price * pack.quantity)}</p>
           </div>
         </li>
       `;
@@ -46,7 +46,7 @@ function renderOrders() {
       <li class="content__orders__order b" data-order-id="${order.id}">
         <div class="content__orders__order__title b">
           <p class="b">Order placed: ${dateFormatted(placed)}</p>
-          <p class="b">Total: $${centsToDollars(order.total)}</p>
+          <p class="b">Total: ${formatPriceINR(order.total)}</p>
           <p class="b">Order ID: ${order.id}</p>
           <p>Delivery to: ${getDeliveryAddress(order.deliveryAddressId).address}.</p>
           <button class="link--g btn--none--g track-btn-js">Track your package</button>

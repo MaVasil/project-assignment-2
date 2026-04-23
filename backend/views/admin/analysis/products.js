@@ -4,7 +4,7 @@ import { getBrandDetail } from "../../../controllers/products/brands.js";
 import { getChipsetDetail } from "../../../controllers/products/chipsets.js";
 import { getLowProductsSoldList, getProductDetail, getProductSoldList, getTopProductsSoldList } from "../../../controllers/products/products.js";
 import { 
-  centsToDollars, 
+  formatPriceINR, 
   getLatestCurrentDate, 
   calculatePercentage as calcPercentage, 
   fullDateFormatted, 
@@ -116,7 +116,7 @@ function updateTotal(productSoldList=getProductSoldList(rangeInputs[0].value, ra
   });
 
   totalCents.innerHTML = total;
-  totalDollars.innerHTML = centsToDollars(total);
+  totalDollars.innerHTML = formatPriceINR(total);
   // console.log("update total");
 }
 
@@ -196,7 +196,7 @@ function renderProductBills(productId) {
   ordersFilteredList.forEach(order => {
     const placed = fullDateFormatted(order.placed);
     const deliveryTo = getDeliveryAddress(order.deliveryAddressId).address;
-    const total = centsToDollars(order.total);
+    const total = formatPriceINR(order.total);
     
     let packagesHtmlDoc = ``;
     order.packages.forEach(pack => {

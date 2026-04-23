@@ -16,7 +16,7 @@ import {
   hideElements, 
   saveToStorage, 
   showElements,
-  centsToDollars
+  formatPriceINR
 } from "../../../controllers/utils.js";
 import { updateCheckoutForm } from "./checkout-form.js";
 
@@ -39,8 +39,8 @@ function renderItems() {
 
   getUserCart(user.id).forEach(item => {
     const product = getProductDetail(item.productId);
-    const price = centsToDollars(product.price);
-    const total = centsToDollars(product.price * item.quantity);
+    const price = formatPriceINR(product.price);
+    const total = formatPriceINR(product.price * item.quantity);
 
     htmlDoc += `
       <li class="content__items__item b" data-cart-id="${item.id}">
